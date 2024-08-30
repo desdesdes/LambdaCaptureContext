@@ -9,6 +9,7 @@ public class DemoDelegateNoParams
 {
     Func<int> _instanceMg;
     Func<int> _instanceLa;
+    Func<int> _instanceStaticLa;
 
     [Benchmark]
     public void Normal_Call()
@@ -47,11 +48,11 @@ public class DemoDelegateNoParams
     [Benchmark]
     public void Lambda_Static_Cached()
     {
-        if (_instanceLa == null)
+        if (_instanceStaticLa == null)
         {
-            _instanceLa = static () => GetInt();
+            _instanceStaticLa = static () => GetInt();
         }
-        DelegateCall(_instanceLa);
+        DelegateCall(_instanceStaticLa);
     }
 
     [Benchmark]
