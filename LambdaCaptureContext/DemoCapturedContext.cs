@@ -6,6 +6,7 @@ namespace LambdaCaptureContext;
 /// <summary>
 /// https://www.meziantou.net/performance-lambda-expressions-method-groups-and-delegate-caching.htm
 /// </summary>
+[MemoryDiagnoser]
 public class DemoDelegateParams
 {
     int _factor = 2;
@@ -14,54 +15,54 @@ public class DemoDelegateParams
     FastDelegateHelper _fastDelegateHelperLa;
 
     [Benchmark]
-    public void Normal_Call()
+    public int Normal_Call()
     {
         int factor = _factor;
-        var y = GetInt(factor);
+        return GetInt(factor);
     }
 
     [Benchmark]
-    public void Lambda_With_IntParam()
+    public int Lambda_With_IntParam()
     {
         int factor = _factor;
-        DelegateCallIntParam(factor, (x) => GetInt(x));
+        return DelegateCallIntParam(factor, (x) => GetInt(x));
     }
 
     [Benchmark]
-    public void Lambda_Static_With_IntParam()
+    public int Lambda_Static_With_IntParam()
     {
         int factor = _factor;
-        DelegateCallIntParam(factor, static (x) => GetInt(x));
+        return DelegateCallIntParam(factor, static (x) => GetInt(x));
     }
 
     [Benchmark]
-    public void Lambda_With_CastedObjectParam()
+    public int Lambda_With_CastedObjectParam()
     {
         object factor = _factor;
-        DelegateCallObjectParam(factor, (x) => GetInt((int)x));
+        return DelegateCallObjectParam(factor, (x) => GetInt((int)x));
     }
 
     [Benchmark]
-    public void Lambda_With_CastedObjectParam_Static()
+    public int Lambda_With_CastedObjectParam_Static()
     {
         object factor = _factor;
-        DelegateCallObjectParam(factor, static (x) => GetInt((int)x));
+        return DelegateCallObjectParam(factor, static (x) => GetInt((int)x));
     }
 
     [Benchmark(Baseline = true)]
-    public void Lambda_Captured_Local_Var()
+    public int Lambda_Captured_Local_Var()
     {
         int factor = _factor;
 
-        DelegateCall(() => GetInt(factor));
+        return DelegateCall(() => GetInt(factor));
     }
 
     [Benchmark]
-    public void Method_Group_Captured_Local_Function_Var()
+    public int Method_Group_Captured_Local_Function_Var()
     {
         int factor = _factor;
 
-        DelegateCall(CalculateLocal);
+        return DelegateCall(CalculateLocal);
 
         int CalculateLocal()
         {
@@ -70,23 +71,23 @@ public class DemoDelegateParams
     }
 
     [Benchmark]
-    public void Lambda_Captured_Class_Var()
+    public int Lambda_Captured_Class_Var()
     {
         int factor = _factor;
 
-        DelegateCall(() => GetInt(_factor));
+        return DelegateCall(() => GetInt(_factor));
     }
 
     [Benchmark]
-    public void Method_Group_Captured_Class_Var()
+    public int Method_Group_Captured_Class_Var()
     {
         int factor = _factor;
 
-        DelegateCall(GetIntFromClassVar);
+        return DelegateCall(GetIntFromClassVar);
     }
 
     [Benchmark]
-    public void Lambda_Captured_Local_Var_Cached()
+    public int Lambda_Captured_Local_Var_Cached()
     {
         int factor = _factor;
 
@@ -96,11 +97,11 @@ public class DemoDelegateParams
         }
 
         _fastDelegateHelperLa.StateValue = factor;
-        var result = _fastDelegateHelperLa.CachedDelegate();
+        return _fastDelegateHelperLa.CachedDelegate();
     }
 
     [Benchmark]
-    public void Lambda_Static_Captured_Local_Var_Cached()
+    public int Lambda_Static_Captured_Local_Var_Cached()
     {
         int factor = _factor;
 
@@ -110,11 +111,11 @@ public class DemoDelegateParams
         }
 
         _fastDelegateHelperStaticLa.StateValue = factor;
-        var result = _fastDelegateHelperStaticLa.CachedDelegate();
+        return _fastDelegateHelperStaticLa.CachedDelegate();
     }
 
     [Benchmark]
-    public void Method_Group_Captured_Local_Var_Cached()
+    public int Method_Group_Captured_Local_Var_Cached()
     {
         int factor = _factor;
 
@@ -124,7 +125,7 @@ public class DemoDelegateParams
         }
 
         _fastDelegateHelperMg.StateValue = factor;
-        var result = _fastDelegateHelperMg.CachedDelegate();
+        return _fastDelegateHelperMg.CachedDelegate();
     }
 
     public int GetIntFromClassVar()
@@ -134,18 +135,18 @@ public class DemoDelegateParams
 
     public static int GetInt(int value) => value * 5;
 
-    void DelegateCall(Func<int> action)
+    int DelegateCall(Func<int> action)
     {
-        var y = action();
+        return action();
     }
 
-    void DelegateCallIntParam(int value, Func<int, int> action)
+    int DelegateCallIntParam(int value, Func<int, int> action)
     {
-        var y = action(value);
+        return action(value);
     }
 
-    void DelegateCallObjectParam(object value, Func<object, int> action)
+    int DelegateCallObjectParam(object value, Func<object, int> action)
     {
-        var y = action(value);
+        return action(value);
     }
 }

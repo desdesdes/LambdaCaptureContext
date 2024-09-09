@@ -5,6 +5,7 @@ namespace LambdaCaptureContext;
 /// <summary>
 /// https://www.meziantou.net/performance-lambda-expressions-method-groups-and-delegate-caching.htm
 /// </summary>
+[MemoryDiagnoser]
 public class DemoDelegateNoParams
 {
     Func<int> _instanceMg;
@@ -12,63 +13,63 @@ public class DemoDelegateNoParams
     Func<int> _instanceStaticLa;
 
     [Benchmark]
-    public void Normal_Call()
+    public int Normal_Call()
     {
-        var y = GetInt();
+        return GetInt();
     }
 
     [Benchmark]
-    public void Lambda_Only()
+    public int Lambda_Only()
     {
-        DelegateCall(() => GetInt());
+        return DelegateCall(() => GetInt());
     }
 
     [Benchmark]
-    public void Lambda_Static_Only()
+    public int Lambda_Static_Only()
     {
-        DelegateCall(static () => GetInt());
+        return DelegateCall(static () => GetInt());
     }
 
     [Benchmark]
-    public void Method_Group()
+    public int Method_Group()
     {
-        DelegateCall(GetInt);
+        return DelegateCall(GetInt);
     }
 
     [Benchmark]
-    public void Lambda_Cached()
+    public int Lambda_Cached()
     {
         if (_instanceLa == null)
         {
             _instanceLa = () => GetInt();
         }
-        DelegateCall(_instanceLa);
+        return DelegateCall(_instanceLa);
     }
 
     [Benchmark]
-    public void Lambda_Static_Cached()
+    public int Lambda_Static_Cached()
     {
         if (_instanceStaticLa == null)
         {
             _instanceStaticLa = static () => GetInt();
         }
-        DelegateCall(_instanceStaticLa);
+        return DelegateCall(_instanceStaticLa);
     }
 
     [Benchmark]
-    public void Method_Group_Cached()
+    public int Method_Group_Cached()
     {
         if(_instanceMg == null)
         {
             _instanceMg = GetInt;
         }
-        DelegateCall(_instanceMg);
+        return DelegateCall(_instanceMg);
     }
 
     public static int GetInt() => 3;
 
-    void DelegateCall(Func<int> action) 
+    int DelegateCall(Func<int> action) 
     {
-        var y = action();
+        return action();
     }
 }
