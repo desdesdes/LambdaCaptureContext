@@ -18,36 +18,36 @@ WarmupCount=3
 | Method               | Mean      | Error     | StdDev    | Median    | Allocated |
 |--------------------- |----------:|----------:|----------:|----------:|----------:|
 | Normal_Call          | 0.0000 ns | 0.0000 ns | 0.0000 ns | 0.0000 ns |         - |
-| Lambda_Only          | 0.0074 ns | 0.1483 ns | 0.0081 ns | 0.0033 ns |         - |
-| Lambda_Static_Only   | 0.0053 ns | 0.0909 ns | 0.0050 ns | 0.0061 ns |         - |
-| Method_Group         | 3.0604 ns | 0.0410 ns | 0.0022 ns | 3.0595 ns |         - |
-| Lambda_Cached        | 0.4459 ns | 0.1300 ns | 0.0071 ns | 0.4458 ns |         - |
-| Lambda_Static_Cached | 0.6641 ns | 3.1321 ns | 0.1717 ns | 0.6835 ns |         - |
-| Method_Group_Cached  | 3.1853 ns | 2.6618 ns | 0.1459 ns | 3.1549 ns |         - |
+| Lambda_Only          | 0.0258 ns | 0.6627 ns | 0.0363 ns | 0.0058 ns |         - |
+| Lambda_Static_Only   | 0.0326 ns | 0.9064 ns | 0.0497 ns | 0.0056 ns |         - |
+| Method_Group         | 3.0590 ns | 0.0088 ns | 0.0005 ns | 3.0591 ns |         - |
+| Lambda_Cached        | 0.0040 ns | 0.0154 ns | 0.0008 ns | 0.0036 ns |         - |
+| Lambda_Static_Cached | 0.0033 ns | 0.0138 ns | 0.0008 ns | 0.0037 ns |         - |
+| Method_Group_Cached  | 2.6237 ns | 0.0470 ns | 0.0026 ns | 2.6231 ns |         - |
 
 ## DemoDelegateParams
 
-| Method                                   | Mean       | Error     | StdDev    | Median     | Ratio | RatioSD | Gen0   | Allocated | Alloc Ratio |
-|----------------------------------------- |-----------:|----------:|----------:|-----------:|------:|--------:|-------:|----------:|------------:|
-| Normal_Call                              |  0.0020 ns | 0.0315 ns | 0.0017 ns |  0.0028 ns | 0.000 |    0.00 |      - |         - |        0.00 |
-| Lambda_With_IntParam                     |  0.0000 ns | 0.0000 ns | 0.0000 ns |  0.0000 ns | 0.000 |    0.00 |      - |         - |        0.00 |
-| Lambda_Static_With_IntParam              |  0.0110 ns | 0.2939 ns | 0.0161 ns |  0.0026 ns | 0.001 |    0.00 |      - |         - |        0.00 |
-| Lambda_With_CastedObjectParam            |  3.8270 ns | 9.2228 ns | 0.5055 ns |  3.5424 ns | 0.322 |    0.04 | 0.0019 |      24 B |        0.27 |
-| Lambda_With_CastedObjectParam_Static     |  3.1685 ns | 0.9879 ns | 0.0542 ns |  3.1962 ns | 0.266 |    0.01 | 0.0019 |      24 B |        0.27 |
-| Lambda_Captured_Local_Var                | 11.8967 ns | 3.3391 ns | 0.1830 ns | 11.9940 ns | 1.000 |    0.02 | 0.0070 |      88 B |        1.00 |
-| Method_Group_Captured_Local_Function_Var | 11.5359 ns | 3.8168 ns | 0.2092 ns | 11.5374 ns | 0.970 |    0.02 | 0.0070 |      88 B |        1.00 |
-| Lambda_Captured_Class_Var                |  7.2565 ns | 1.9260 ns | 0.1056 ns |  7.2897 ns | 0.610 |    0.01 | 0.0051 |      64 B |        0.73 |
-| Method_Group_Captured_Class_Var          |  6.9162 ns | 2.6153 ns | 0.1434 ns |  6.8998 ns | 0.581 |    0.01 | 0.0051 |      64 B |        0.73 |
-| Lambda_Captured_Local_Var_Cached         |  1.8455 ns | 0.1588 ns | 0.0087 ns |  1.8410 ns | 0.155 |    0.00 |      - |         - |        0.00 |
-| Lambda_Static_Captured_Local_Var_Cached  |  1.8606 ns | 0.1541 ns | 0.0084 ns |  1.8632 ns | 0.156 |    0.00 |      - |         - |        0.00 |
-| Method_Group_Captured_Local_Var_Cached   |  3.9997 ns | 0.6208 ns | 0.0340 ns |  3.9804 ns | 0.336 |    0.01 |      - |         - |        0.00 |
+| Method                                   | Mean       | Error     | StdDev    | Ratio | RatioSD | Gen0   | Allocated | Alloc Ratio |
+|----------------------------------------- |-----------:|----------:|----------:|------:|--------:|-------:|----------:|------------:|
+| Normal_Call                              |  0.0000 ns | 0.0000 ns | 0.0000 ns | 0.000 |    0.00 |      - |         - |        0.00 |
+| Lambda_With_IntParam                     |  0.4411 ns | 0.0409 ns | 0.0022 ns | 0.039 |    0.00 |      - |         - |        0.00 |
+| Lambda_Static_With_IntParam              |  0.4639 ns | 0.2869 ns | 0.0157 ns | 0.041 |    0.00 |      - |         - |        0.00 |
+| Lambda_With_CastedObjectParam            |  3.4811 ns | 0.5900 ns | 0.0323 ns | 0.308 |    0.00 | 0.0019 |      24 B |        0.27 |
+| Lambda_With_CastedObjectParam_Static     |  3.6025 ns | 2.8937 ns | 0.1586 ns | 0.319 |    0.01 | 0.0019 |      24 B |        0.27 |
+| Lambda_Captured_Local_Var                | 11.2909 ns | 2.7575 ns | 0.1511 ns | 1.000 |    0.02 | 0.0070 |      88 B |        1.00 |
+| Method_Group_Captured_Local_Function_Var | 11.5081 ns | 1.8609 ns | 0.1020 ns | 1.019 |    0.01 | 0.0070 |      88 B |        1.00 |
+| Lambda_Captured_Class_Var                |  7.2945 ns | 1.5021 ns | 0.0823 ns | 0.646 |    0.01 | 0.0051 |      64 B |        0.73 |
+| Method_Group_Captured_Class_Var          |  7.4752 ns | 5.4957 ns | 0.3012 ns | 0.662 |    0.02 | 0.0051 |      64 B |        0.73 |
+| Lambda_Captured_Local_Var_Cached         |  2.2522 ns | 0.3297 ns | 0.0181 ns | 0.199 |    0.00 |      - |         - |        0.00 |
+| Lambda_Static_Captured_Local_Var_Cached  |  2.2864 ns | 0.1074 ns | 0.0059 ns | 0.203 |    0.00 |      - |         - |        0.00 |
+| Method_Group_Captured_Local_Var_Cached   |  4.0645 ns | 8.8590 ns | 0.4856 ns | 0.360 |    0.04 |      - |         - |        0.00 |
 
 ## MethodGroupVsLambda
 
 | Method              | Mean      | Error     | StdDev   | Gen0   | Allocated |
 |-------------------- |----------:|----------:|---------:|-------:|----------:|
-| Lambda_Capture      | 101.62 ns |  8.180 ns | 0.448 ns | 0.0528 |     664 B |
-| MethodGroup_Capture | 100.67 ns | 34.804 ns | 1.908 ns | 0.0528 |     664 B |
-| Lambda              |  12.53 ns |  0.854 ns | 0.047 ns |      - |         - |
-| MethodGroup         | 107.15 ns | 14.443 ns | 0.792 ns | 0.0509 |     640 B |
-| MethodGroup_Static  |  43.45 ns |  3.102 ns | 0.170 ns |      - |         - |
+| Lambda_Capture      | 103.72 ns | 19.663 ns | 1.078 ns | 0.0528 |     664 B |
+| MethodGroup_Capture | 100.81 ns | 17.102 ns | 0.937 ns | 0.0528 |     664 B |
+| Lambda              |  12.55 ns |  1.189 ns | 0.065 ns |      - |         - |
+| MethodGroup         | 107.51 ns | 20.087 ns | 1.101 ns | 0.0509 |     640 B |
+| MethodGroup_Static  |  43.42 ns |  4.323 ns | 0.237 ns |      - |         - |
