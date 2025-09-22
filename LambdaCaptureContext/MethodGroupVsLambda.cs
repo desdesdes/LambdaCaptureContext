@@ -47,6 +47,19 @@ public class MethodGroupVsLambda
     }
 
     [Benchmark]
+    public int Lambda_Static()
+    {
+        int result = 0;
+
+        for (int i = 0; i < 10; i++)
+        {
+            result += DelegateCall(i, static j => j + j);
+        }
+
+        return result;
+    }
+
+    [Benchmark]
     public int MethodGroup()
     {
         int result = 0;

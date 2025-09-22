@@ -10,9 +10,9 @@ namespace LambdaCaptureContext;
 public class DemoDelegateParams
 {
     int _factor = 2;
-    FastDelegateHelper _fastDelegateHelperStaticLa;
-    FastDelegateHelper _fastDelegateHelperMg;
-    FastDelegateHelper _fastDelegateHelperLa;
+    FastDelegateHelper? _fastDelegateHelperStaticLa;
+    FastDelegateHelper? _fastDelegateHelperMg;
+    FastDelegateHelper? _fastDelegateHelperLa;
 
     [Benchmark]
     public int Normal_Call()

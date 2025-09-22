@@ -8,9 +8,9 @@ namespace LambdaCaptureContext;
 [MemoryDiagnoser]
 public class DemoDelegateNoParams
 {
-    Func<int> _instanceMg;
-    Func<int> _instanceLa;
-    Func<int> _instanceStaticLa;
+    Func<int>? _instanceMg;
+    Func<int>? _instanceLa;
+    Func<int>? _instanceStaticLa;
 
     [Benchmark]
     public int Normal_Call()
