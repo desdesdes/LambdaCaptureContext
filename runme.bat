@@ -1,1 +1,1 @@
-dotnet run --project LambdaCaptureContext -c Release -f net9.0 -- --j Short -r net9.0
+dotnet run --project LambdaCaptureContext -c Release -f net10.0 -- --j Short -r net10.0
