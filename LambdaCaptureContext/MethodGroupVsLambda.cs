@@ -2,7 +2,9 @@
 
 namespace LambdaCaptureContext;
 
-[MemoryDiagnoser]
+[DisassemblyDiagnoser]
+[MemoryDiagnoser(displayGenColumns: false)]
+[HideColumns("Job", "Error", "Median", "RatioSD")]
 public class MethodGroupVsLambda
 {
     [Benchmark]

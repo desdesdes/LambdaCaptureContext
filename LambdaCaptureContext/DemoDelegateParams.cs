@@ -6,7 +6,9 @@ namespace LambdaCaptureContext;
 /// <summary>
 /// https://www.meziantou.net/performance-lambda-expressions-method-groups-and-delegate-caching.htm
 /// </summary>
-[MemoryDiagnoser]
+[DisassemblyDiagnoser]
+[MemoryDiagnoser(displayGenColumns: false)]
+[HideColumns("Job", "Error", "Median", "RatioSD")]
 public class DemoDelegateParams
 {
     int _factor = 2;
@@ -54,7 +56,9 @@ public class DemoDelegateParams
     {
         int factor = _factor;
 
-        return DelegateCall(() => GetInt(factor));
+        var myFubc = () => GetInt(factor);
+
+        return DelegateCall(myFubc);
     }
 
     [Benchmark]
